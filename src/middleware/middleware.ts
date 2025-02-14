@@ -13,7 +13,7 @@ export const configureMiddleware = (app: express.Application) => {
                 scriptSrc: ["'self'", "'unsafe-inline'"],
                 styleSrc: ["'self'", "'unsafe-inline'"],
                 imgSrc: ["'self'", "data:", "https:"],
-                connectSrc: ["'self'", "https://api.atphoto.net"],
+                connectSrc: ["'self'", "https://api.atphoto.net", "http://localhost:5000"],
             },
         },
         crossOriginEmbedderPolicy: false, // Adjust if needed
@@ -23,7 +23,7 @@ export const configureMiddleware = (app: express.Application) => {
     app.use(cors({
         origin: process.env.NODE_ENV === 'production' 
             ? 'https://atphoto.net'
-            : 'http://localhost:3000',
+            : ['http://localhost:3000', 'http://localhost:5000'],
         credentials: true,
     }));
 
