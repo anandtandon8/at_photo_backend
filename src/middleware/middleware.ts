@@ -16,7 +16,7 @@ export const configureMiddleware = (app: express.Application) => {
                 connectSrc: ["'self'", "https://api.atphoto.net", "http://localhost:5000"],
             },
         },
-        crossOriginEmbedderPolicy: false, // Adjust if needed
+        crossOriginEmbedderPolicy: false,
     }));
 
     // CORS configuration
@@ -25,6 +25,8 @@ export const configureMiddleware = (app: express.Application) => {
             ? 'https://atphoto.net'
             : ['http://localhost:3000', 'http://localhost:5000'],
         credentials: true,
+        methods: ['GET', 'POST', 'OPTIONS'],
+        allowedHeaders: ['Content-Type', 'Authorization'],
     }));
 
     // rate limiting
