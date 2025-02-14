@@ -22,7 +22,7 @@ export const addContact = async (req: Request, res: Response) => {
         let msg : string = "";
         
         if (!submission.name || !submission.email || !submission.message) {
-            res.status(400).json({ message: "Missing required field(s)", ok: true });
+            res.status(200).json({ message: "Missing required field(s)", ok: true });
             return;
         }
 
@@ -34,7 +34,7 @@ export const addContact = async (req: Request, res: Response) => {
         }
 
         if (msg !== "") {
-            res.status(400).json({ message: msg, ok: true });
+            res.status(200).json({ message: msg, ok: true });
             return;
         }
         
@@ -57,11 +57,11 @@ export const addNewsletter = async (req: Request, res: Response) => {
         const submission = req.body as NewsletterRequest;
         
         if (!submission.email) {
-            res.status(400).json({ message: "Missing required field(s)", ok: true });
+            res.status(200).json({ message: "Missing required field(s)", ok: true });
             return;
         }
         if (!emailRegex.test(submission.email)) {
-            res.status(400).json({message: "Invalid email address", ok: true});
+            res.status(200).json({message: "Invalid email address", ok: true});
             return;
         }
         
