@@ -1,8 +1,8 @@
 # at_photo | A technologically modern photography site.
 
-This is the backend for my photography site at: [https://atphoto.net](https://atphoto.net)
+This is the backend repositoryfor my photography site at: [https://atphoto.net](https://atphoto.net)
 
-You can find the frontend repository [here](https://github.com/at-photo/at_photo_frontend).
+You can find the frontend repository [here](https://github.com/m3di0cre3/at_photo_frontend).
 
 ## About ATPhoto
 
@@ -36,7 +36,7 @@ I'm currently implementing this:
 ![image](readmeImgs/ATPhotoImageClassificationPipeline.png)
 
 
-Lastly, the DevOps was a fun adventure where I learned a lot about AWS, and now have robust infrastructure set up with a functioning CI/CD pipeline(after being told by many to just use Vercel).
+Lastly, the DevOps was a fun adventure where I learned a lot about AWS, and now have robust infrastructure set up with a functioning CI/CD pipeline (after being told by many to just use Vercel). The couple of all nighters I pulled for just my first deployment were worth it.
 
 
 
