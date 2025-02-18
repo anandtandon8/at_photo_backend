@@ -31,7 +31,7 @@ Becomes this:
 
 But that wasn't enough. So now I'm tackling the problem of adding new photos. I'm currently working on an image classification pipeline directly from my Adobe Exports to the by category galleries on my website powered by my own ML image classification model.
 
-I'm currently implementing this:
+I'm currently implementing it like this:
 
 ![image](readmeImgs/ATPhotoImageClassificationPipeline.png)
 
