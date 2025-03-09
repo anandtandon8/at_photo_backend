@@ -9,7 +9,7 @@ import { configureMiddleware } from "./middleware/middleware";
 
 import admin from 'firebase-admin';
 
-export const addImagesApiKey = fs.readFileSync('./add_imgs_api_key.txt').toString().trim();
+export const addImagesApiKey = fs.readFileSync('/var/www/html/add_imgs_api_key.txt').toString().trim();
 
 const app = express();
 
@@ -18,7 +18,7 @@ export const postgresDB = new Pool({
   port: parseInt(process.env.DB_PORT || '5432'),
   database: process.env.DB_NAME,
   user: process.env.DB_USER,
-  password: fs.readFileSync('./postgres_pass.txt').toString().trim(),
+  password: fs.readFileSync('/var/www/html/postgres_pass.txt').toString().trim(),
   ssl: {
     rejectUnauthorized: true,
     ca: fs.readFileSync('./us-east-2-bundle.pem').toString(),
