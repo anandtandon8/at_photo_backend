@@ -2,14 +2,15 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-COPY package.json  package-lock.json  tsconfig.json  nodemon.json atphotobackend-b9d66802c105.json  ./
+# Copy package files
+COPY package*.json ./
 
-RUN npm install
+# Install production dependencies only
+RUN npm ci --omit=dev
 
-COPY src ./src
+# Copy pre-built files and other necessary files
+COPY dist/ ./dist/
 
 EXPOSE 3000
-
-RUN npm run build
 
 CMD ["npm", "start"]
