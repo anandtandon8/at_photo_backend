@@ -5,13 +5,17 @@ import path from 'path';
 import multer from 'multer';
 
 
+interface MulterRequest extends Request {
+  file?: Express.Multer.File;
+}
+
 const upload = multer({ dest: '/tmp/' });
 
 const categoryArr: string[] = ['car', 'street', 'portrait', 'nature'];
 
 export const addImages = [
     upload.single('image'), // 'image' is the field name in the form data
-    async (req: Request, res: Response) => {
+    async (req: MulterRequest, res: Response) => {
         try {
             if (req.headers.authorization !== addImagesApiKey) {
                 res.status(401).json({ message: "Unauthorized, Invalid API Key", ok: false });

@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.newsletterCollection = exports.contactCollection = exports.db = exports.postgresDB = void 0;
+exports.newsletterCollection = exports.contactCollection = exports.db = exports.postgresDB = exports.addImagesApiKey = void 0;
 const express_1 = __importDefault(require("express"));
 const pg_1 = require("pg");
 const fs_1 = __importDefault(require("fs"));
@@ -11,16 +11,15 @@ const misc_1 = require("./config/misc");
 const userRoutes_1 = __importDefault(require("./routes/userRoutes"));
 const adminRoutes_1 = __importDefault(require("./routes/adminRoutes"));
 const middleware_1 = require("./middleware/middleware");
-const dotenv_1 = __importDefault(require("dotenv"));
-dotenv_1.default.config();
 const firebase_admin_1 = __importDefault(require("firebase-admin"));
+exports.addImagesApiKey = fs_1.default.readFileSync('./add_imgs_api_key.txt').toString().trim();
 const app = (0, express_1.default)();
 exports.postgresDB = new pg_1.Pool({
     host: process.env.DB_HOST,
     port: parseInt(process.env.DB_PORT || '5432'),
     database: process.env.DB_NAME,
     user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
+    password: fs_1.default.readFileSync('./postgres_pass.txt').toString().trim(),
     ssl: {
         rejectUnauthorized: true,
         ca: fs_1.default.readFileSync('./us-east-2-bundle.pem').toString(),

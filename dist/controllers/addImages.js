@@ -23,7 +23,7 @@ exports.addImages = [
     upload.single('image'), // 'image' is the field name in the form data
     (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            if (req.headers.authorization !== process.env.ADD_IMAGES_API_KEY) {
+            if (req.headers.authorization !== app_1.addImagesApiKey) {
                 res.status(401).json({ message: "Unauthorized, Invalid API Key", ok: false });
                 return;
             }
