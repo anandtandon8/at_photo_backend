@@ -41,5 +41,6 @@ artifacts:
   files:
     - appspec.yml
     - scripts/**/*
+    - atphotobackend-b9d66802c105.json
   base-directory: .
   discard-paths: false
