@@ -14,6 +14,8 @@ phases:
       - npm ci
       - echo "Skipping tests for now"
       #- npm test
+      - echo "Downloading Firebase service account key from S3"
+      - aws s3 cp s3://privatebucketforatphoto/atphotobackend-b9d66802c105.json ./atphotobackend-b9d66802c105.json
       - echo "Logging into AWS ECR"
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
   build:
