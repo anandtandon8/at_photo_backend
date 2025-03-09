@@ -19,7 +19,7 @@ const addContact = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         const submission = req.body;
         let msg = "";
         if (!submission.name || !submission.email || !submission.message) {
-            res.status(400).json({ message: "Missing required field(s)", ok: true });
+            res.status(200).json({ message: "Missing required field(s)", ok: true });
             return;
         }
         if (!emailRegex.test(submission.email)) {
@@ -29,7 +29,7 @@ const addContact = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
             msg += (msg === "" ? "" : ", ") + "Invalid phone number";
         }
         if (msg !== "") {
-            res.status(400).json({ message: msg, ok: true });
+            res.status(200).json({ message: msg, ok: true });
             return;
         }
         yield app_1.contactCollection.add(submission);
@@ -48,11 +48,11 @@ const addNewsletter = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     try {
         const submission = req.body;
         if (!submission.email) {
-            res.status(400).json({ message: "Missing required field(s)", ok: true });
+            res.status(200).json({ message: "Missing required field(s)", ok: true });
             return;
         }
         if (!emailRegex.test(submission.email)) {
-            res.status(400).json({ message: "Invalid email address", ok: true });
+            res.status(200).json({ message: "Invalid email address", ok: true });
             return;
         }
         const querySnapshot = yield app_1.newsletterCollection.where('email', '==', submission.email).get();

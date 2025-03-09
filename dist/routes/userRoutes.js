@@ -2,7 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const forms_1 = require("../controllers/forms");
+const getImages_1 = require("../controllers/getImages");
 const router = (0, express_1.Router)();
 router.post("/contact-form", forms_1.addContact);
 router.post("/newsletter", forms_1.addNewsletter);
+router.get("/getimageurls", getImages_1.getImageUrls);
+router.get("/getfavoriteimageurls", getImages_1.getFavoriteImageUrls);
 exports.default = router;
