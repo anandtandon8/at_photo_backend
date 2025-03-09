@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { postgresDB } from '../app';
+import { postgresDB, addImagesApiKey } from '../app';
 import fs from 'fs';
 import path from 'path';
 import multer from 'multer';
@@ -13,7 +13,7 @@ export const addImages = [
     upload.single('image'), // 'image' is the field name in the form data
     async (req: Request, res: Response) => {
         try {
-            if (req.headers.authorization !== process.env.ADD_IMAGES_API_KEY) {
+            if (req.headers.authorization !== addImagesApiKey) {
                 res.status(401).json({ message: "Unauthorized, Invalid API Key", ok: false });
                 return;
             }

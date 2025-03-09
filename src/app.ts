@@ -6,11 +6,10 @@ import userRoutes from "./routes/userRoutes";
 import adminRoutes from "./routes/adminRoutes";
 import { configureMiddleware } from "./middleware/middleware";
 
-import env from 'dotenv';
-env.config();
 
 import admin from 'firebase-admin';
 
+export const addImagesApiKey = fs.readFileSync('./add_imgs_api_key.txt').toString().trim();
 
 const app = express();
 
@@ -19,7 +18,7 @@ export const postgresDB = new Pool({
   port: parseInt(process.env.DB_PORT || '5432'),
   database: process.env.DB_NAME,
   user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
+  password: fs.readFileSync('./postgres_pass.txt').toString().trim(),
   ssl: {
     rejectUnauthorized: true,
     ca: fs.readFileSync('./us-east-2-bundle.pem').toString(),
