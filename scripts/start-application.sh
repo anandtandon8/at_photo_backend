@@ -1,6 +1,7 @@
 #!/bin/bash
 echo "Starting atphotobackend container..."
 sudo docker run -d \
+    --user root \
     --name atphotobackend \
     -p 3000:3000 \
     --restart unless-stopped \
