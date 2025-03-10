@@ -17,22 +17,31 @@ export const addImages = [
     upload.single('image'), // 'image' is the field name in the form data
     async (req: MulterRequest, res: Response) => {
         try {
+            console.log("received request: ", req.body.filename);
             if (req.headers.authorization !== addImagesApiKey) {
                 res.status(401).json({ message: "Unauthorized, Invalid API Key", ok: false });
                 return;
             }
-
+            console.log("valid api key");
             // Get the image file and filename from the request
             const imageFile = req.file;
             const filename = req.body.filename;
 
             if (!imageFile || !filename) {
                 res.status(400).json({ message: "Either no image file or no filename provided", ok: false });
+                console.log("no image file or no filename provided");
                 return;
             }
 
             // Use the filename from the request
             const imagePath = path.join('/var/www/images', filename);
+
+            // Ensure the directory exists
+            const dirPath = path.dirname(imagePath);
+            if (!fs.existsSync(dirPath)) {
+                fs.mkdirSync(dirPath, { recursive: true });
+                console.log("directory created");
+            }
 
             // Move the file to the desired location
             try {
@@ -52,8 +61,9 @@ export const addImages = [
                         }
                     });
                 });
-                
+                console.log("file moved");
                 // Insert into the database after successful file move
+                console.log("inserting into database");
                 const query = 'INSERT INTO classifications VALUES ($1, $2)';
                 const result = await postgresDB.query(query, [filename, categoryArr[Math.min(Math.floor(Math.random() * categoryArr.length), categoryArr.length - 1)]]);
 
@@ -62,11 +72,13 @@ export const addImages = [
                 } else {
                     res.status(500).json({ message: "Insert failed", ok: false });
                 }
+                console.log("inserted into database");
+                return;
             } catch (error) {
                 console.error('Operation error:', error);
                 res.status(500).json({ message: error instanceof Error ? error.message : "Error processing request", ok: false });
+                return;
             }
-            return;
 
         } catch (error) {
             console.error('Error:', error);
