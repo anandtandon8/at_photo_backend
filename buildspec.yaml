@@ -15,7 +15,7 @@ phases:
       - echo "Skipping tests for now"
       #- npm test
       - echo "Downloading Firebase service account key from S3"
-      - aws s3 cp s3://privatebucketforatphoto/atphotobackend-b9d66802c105.json ./atphotobackend-b9d66802c105.json
+      - aws s3 cp s3://privatebucketforatphoto/atphotobackend-d472654dec94.json ./atphotobackend-d472654dec94.json
       - aws s3 cp s3://privatebucketforatphoto/postgres_pass.txt ./postgres_pass.txt
       - aws s3 cp s3://privatebucketforatphoto/add_imgs_api_key.txt ./add_imgs_api_key.txt
       - aws s3 cp s3://privatebucketforatphoto/us-east-2-bundle.pem ./us-east-2-bundle.pem
@@ -47,7 +47,7 @@ artifacts:
   files:
     - appspec.yml
     - scripts/**/*
-    - atphotobackend-b9d66802c105.json
+    - atphotobackend-d472654dec94.json
     - postgres_pass.txt
     - add_imgs_api_key.txt
     - us-east-2-bundle.pem
