@@ -40,7 +40,7 @@ postgresDB.connect((err, client, release) => {
 
 configureMiddleware(app);
 
-const serviceAccount = require("../atphotobackend-b9d66802c105.json");
+const serviceAccount = require("../atphotobackend-d472654dec94.json");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
