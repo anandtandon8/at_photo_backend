@@ -10,5 +10,6 @@ sudo docker run -d \
     -e DB_HOST=atphotodb.c30k8ei8mp5j.us-east-2.rds.amazonaws.com \
     -e DB_NAME=classifications \
     -e DB_USER=postgres \
+    -v /var/www/images:/var/www/images \
     atphotobackend:Latest 
     

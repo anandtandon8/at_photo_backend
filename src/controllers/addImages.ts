@@ -32,31 +32,40 @@ export const addImages = [
             }
 
             // Use the filename from the request
-            const imagePath = path.join('/var/www/images', filename);  // change to /var/www/images after testing
+            const imagePath = path.join('/var/www/images', filename);
 
             // Move the file to the desired location
-            fs.rename(imageFile.path, imagePath, async (err) => {
-                if (err) {
-                    console.error('File move error:', err);
-                    res.status(500).json({ message: "File move error", ok: false });
-                    return;
-                }
+            try {
+                await new Promise<void>((resolve, reject) => {
+                    fs.copyFile(imageFile.path, imagePath, (err) => {
+                        if (err) {
+                            console.error('File move error:', err);
+                            reject(err);
+                        } else {
+                            // Clean up the temporary file after successful copy
+                            fs.unlink(imageFile.path, (unlinkErr) => {
+                                if (unlinkErr) {
+                                    console.error('Failed to clean up temp file:', unlinkErr);
+                                }
+                                resolve();
+                            });
+                        }
+                    });
+                });
+                
+                // Insert into the database after successful file move
+                const query = 'INSERT INTO classifications VALUES ($1, $2)';
+                const result = await postgresDB.query(query, [filename, categoryArr[Math.min(Math.floor(Math.random() * categoryArr.length), categoryArr.length - 1)]]);
 
-                try {
-                    // Insert into the database after successful file move
-                    const query = 'INSERT INTO classifications VALUES ($1, $2)';
-                    const result = await postgresDB.query(query, [filename, categoryArr[Math.min(Math.floor(Math.random() * categoryArr.length), categoryArr.length - 1)]]);
-
-                    if (result.rowCount === 1) {
-                        res.status(200).json({ message: "Success", ok: true });
-                    } else {
-                        res.status(500).json({ message: "Insert failed", ok: false });
-                    }
-                } catch (error) {
-                    console.error('Database query error:', error);
-                    res.status(500).json({ message: "Error", ok: false });
+                if (result.rowCount === 1) {
+                    res.status(200).json({ message: "Success", ok: true });
+                } else {
+                    res.status(500).json({ message: "Insert failed", ok: false });
                 }
-            });
+            } catch (error) {
+                console.error('Operation error:', error);
+                res.status(500).json({ message: error instanceof Error ? error.message : "Error processing request", ok: false });
+            }
             return;
 
         } catch (error) {

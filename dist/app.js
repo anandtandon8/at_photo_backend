@@ -11,7 +11,9 @@ const misc_1 = require("./config/misc");
 const userRoutes_1 = __importDefault(require("./routes/userRoutes"));
 const adminRoutes_1 = __importDefault(require("./routes/adminRoutes"));
 const middleware_1 = require("./middleware/middleware");
+const dotenv_1 = __importDefault(require("dotenv"));
 const firebase_admin_1 = __importDefault(require("firebase-admin"));
+dotenv_1.default.config();
 exports.addImagesApiKey = fs_1.default.readFileSync('./add_imgs_api_key.txt').toString().trim();
 const app = (0, express_1.default)();
 exports.postgresDB = new pg_1.Pool({
@@ -39,7 +41,7 @@ exports.postgresDB.connect((err, client, release) => {
     }
 });
 (0, middleware_1.configureMiddleware)(app);
-const serviceAccount = require("../atphotobackend-b9d66802c105.json");
+const serviceAccount = require("../atphotobackend-d472654dec94.json");
 firebase_admin_1.default.initializeApp({
     credential: firebase_admin_1.default.credential.cert(serviceAccount)
 });

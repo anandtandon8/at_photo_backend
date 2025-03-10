@@ -37,28 +37,28 @@ exports.addImages = [
             // Use the filename from the request
             const imagePath = path_1.default.join('/var/www/images', filename); // change to /var/www/images after testing
             // Move the file to the desired location
-            fs_1.default.rename(imageFile.path, imagePath, (err) => __awaiter(void 0, void 0, void 0, function* () {
+            fs_1.default.copyFile(imageFile.path, imagePath, (err) => {
                 if (err) {
                     console.error('File move error:', err);
                     res.status(500).json({ message: "File move error", ok: false });
                     return;
                 }
-                try {
-                    // Insert into the database after successful file move
-                    const query = 'INSERT INTO classifications VALUES ($1, $2)';
-                    const result = yield app_1.postgresDB.query(query, [filename, categoryArr[Math.min(Math.floor(Math.random() * categoryArr.length), categoryArr.length - 1)]]);
-                    if (result.rowCount === 1) {
-                        res.status(200).json({ message: "Success", ok: true });
-                    }
-                    else {
-                        res.status(500).json({ message: "Insert failed", ok: false });
-                    }
+            });
+            try {
+                // Insert into the database after successful file move
+                const query = 'INSERT INTO classifications VALUES ($1, $2)';
+                const result = yield app_1.postgresDB.query(query, [filename, categoryArr[Math.min(Math.floor(Math.random() * categoryArr.length), categoryArr.length - 1)]]);
+                if (result.rowCount === 1) {
+                    res.status(200).json({ message: "Success", ok: true });
                 }
-                catch (error) {
-                    console.error('Database query error:', error);
-                    res.status(500).json({ message: "Error", ok: false });
+                else {
+                    res.status(500).json({ message: "Insert failed", ok: false });
                 }
-            }));
+            }
+            catch (error) {
+                console.error('Database query error:', error);
+                res.status(500).json({ message: "Error", ok: false });
+            }
             return;
         }
         catch (error) {

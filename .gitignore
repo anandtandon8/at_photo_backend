@@ -3,4 +3,6 @@ node_modules
 *.env
 atphotobackend-b9d66802c105.json
 us-east-2-bundle.pem
+add_imgs_api_key.txt
+postgres_pass.txt
 atphotobackend-d472654dec94.json

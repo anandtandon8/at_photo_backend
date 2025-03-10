@@ -5,9 +5,11 @@ import { config } from "./config/misc";
 import userRoutes from "./routes/userRoutes";
 import adminRoutes from "./routes/adminRoutes";
 import { configureMiddleware } from "./middleware/middleware";
-
+import dotenv from 'dotenv';
 
 import admin from 'firebase-admin';
+
+dotenv.config();
 
 export const addImagesApiKey = fs.readFileSync('./add_imgs_api_key.txt').toString().trim();
 
