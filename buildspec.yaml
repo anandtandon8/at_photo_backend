@@ -16,9 +16,9 @@ phases:
       #- npm test
       - echo "Downloading Firebase service account key from S3"
       - aws s3 cp s3://privatebucketforatphoto/atphotobackend-b9d66802c105.json ./atphotobackend-b9d66802c105.json
-      - aws s3 cp s3://privatebucketforatphoto/postgres_pass.txt postgres_pass.txt
-      - aws s3 cp s3://privatebucketforatphoto/add_imgs_api_key.txt add_imgs_api_key.txt
-      - aws s3 cp s3://privatebucketforatphoto/us-east-2-bundle.pem us-east-2-bundle.pem
+      - aws s3 cp s3://privatebucketforatphoto/postgres_pass.txt ./postgres_pass.txt
+      - aws s3 cp s3://privatebucketforatphoto/add_imgs_api_key.txt ./add_imgs_api_key.txt
+      - aws s3 cp s3://privatebucketforatphoto/us-east-2-bundle.pem ./us-east-2-bundle.pem
 
       - echo "Logging into AWS ECR"
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
