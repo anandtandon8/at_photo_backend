@@ -1,10 +1,6 @@
 #!/bin/bash
 cd /var/www/html/atphotobackend
 
-aws s3 cp s3://privatebucketforatphoto/postgres_pass.txt postgres_pass.txt
-aws s3 cp s3://privatebucketforatphoto/add_imgs_api_key.txt add_imgs_api_key.txt
-aws s3 cp s3://privatebucketforatphoto/us-east-2-bundle.pem us-east-2-bundle.pem
-
 # Remove old images
 echo "Removing old images..."
 sudo docker rmi atphotobackend:Latest || true
