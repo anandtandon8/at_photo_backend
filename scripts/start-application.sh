@@ -11,6 +11,5 @@ sudo docker run -d \
     -e DB_NAME=classifications \
     -e DB_USER=postgres \
     -v /var/www/images:/var/www/images \
-    -v /tmp/:/tmp/ \
     atphotobackend:Latest 
     
