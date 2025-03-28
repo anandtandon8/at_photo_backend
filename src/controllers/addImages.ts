@@ -114,7 +114,7 @@ export const addImages = [
                 });
                 console.log("file moved");
                 // Get classification
-                const imageBuffer = await fs.promises.readFile(imageFile.path);
+                const imageBuffer = await fs.promises.readFile(imagePath);
                 const classification = await getClassification(imageBuffer);
                 
                 // Insert into the database after successful file move
