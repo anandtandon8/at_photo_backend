@@ -64,9 +64,9 @@ async function getClassification(imageBuffer: Buffer): Promise<string> {
     const data = await response.json();
     console.log(data);
     const apiResponse = JSON.parse(data.body);
-    console.log(apiResponse);
+    // console.log(apiResponse);
     const result = JSON.parse(apiResponse.body);
-    console.log(result);
+    // console.log(result);
     return result.classification;
 }
 
