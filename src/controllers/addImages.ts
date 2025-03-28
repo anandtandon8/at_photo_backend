@@ -13,7 +13,7 @@ interface MulterRequest extends Request {
   file?: Express.Multer.File;
 }
 
-const upload = multer({ dest: '/tmp/' })
+const upload = multer({ dest: path.join(__dirname, '..', 'uploads') })
 
 async function getClassification(imageBuffer: Buffer): Promise<string> {
     const endpoint = 'https://s0ozky42g1.execute-api.us-east-2.amazonaws.com/default';
