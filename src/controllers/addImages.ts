@@ -3,9 +3,6 @@ import { postgresDB, addImagesApiKey } from '../app';
 import fs from 'fs';
 import path from 'path';
 import multer from 'multer';
-import { SignatureV4 } from '@aws-sdk/signature-v4';
-import { Sha256 } from '@aws-crypto/sha256-js';
-import { defaultProvider } from '@aws-sdk/credential-provider-node';
 import { HttpRequest } from '@aws-sdk/protocol-http';
 
 
