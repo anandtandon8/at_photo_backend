@@ -21,13 +21,13 @@ if (!fs.existsSync(uploadDir)) {
 const upload = multer({ dest: uploadDir });
 
 async function getClassification(imageBuffer: Buffer): Promise<string> {
-    const endpoint = 'https://s0ozky42g1.execute-api.us-east-2.amazonaws.com/default';
+    const endpoint = 'https://p3c9j9qv7a.execute-api.us-east-2.amazonaws.com/default/image-classification';
     const region = 'us-east-2';
     
     // Create the HTTP request object
     const request = new HttpRequest({
-        hostname: 's0ozky42g1.execute-api.us-east-2.amazonaws.com',
-        path: '/default',
+        hostname: 'p3c9j9qv7a.execute-api.us-east-2.amazonaws.com',
+        path: '/default/image-classification',
         method: 'POST',
         headers: {
             'Content-Type': 'image/jpeg',
@@ -37,21 +37,23 @@ async function getClassification(imageBuffer: Buffer): Promise<string> {
         })
     });
 
-    // Sign the request
+    /* Sign the request
     const signer = new SignatureV4({
         credentials: defaultProvider(),
         region: region,
         service: 'execute-api',
         sha256: Sha256
     });
+    
 
     const signedRequest = await signer.sign(request);
+    */
 
     // Make the request
     const response = await fetch(endpoint, {
         method: 'POST',
-        headers: signedRequest.headers,
-        body: signedRequest.body
+        headers: request.headers,
+        body: request.body
     });
 
     if (!response.ok) {
