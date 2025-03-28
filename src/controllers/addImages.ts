@@ -36,7 +36,7 @@ async function getClassification(imageBuffer: Buffer): Promise<string> {
             image: imageBuffer.toString('base64')
         })
     });
-    console.log(request);
+    //console.log(request);
 
     /* Sign the request
     const signer = new SignatureV4({
