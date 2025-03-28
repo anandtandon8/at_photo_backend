@@ -30,7 +30,7 @@ async function getClassification(imageBuffer: Buffer): Promise<string> {
         path: '/default/image-classification',
         method: 'POST',
         headers: {
-            'Content-Type': 'image/jpeg',
+            'Content-Type': 'image/json',
         },
         body: JSON.stringify({
             image: imageBuffer.toString('base64')
