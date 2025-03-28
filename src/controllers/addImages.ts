@@ -13,7 +13,7 @@ interface MulterRequest extends Request {
   file?: Express.Multer.File;
 }
 
-const uploadDir = path.join(__dirname, '..', 'uploads');
+const uploadDir = '/app/uploads';
 if (!fs.existsSync(uploadDir)) {
     fs.mkdirSync(uploadDir, { recursive: true });
 }
