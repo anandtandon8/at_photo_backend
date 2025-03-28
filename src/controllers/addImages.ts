@@ -37,21 +37,11 @@ async function getClassification(imageBuffer: Buffer): Promise<string> {
         })
     });
 
-    // Sign the request
-    const signer = new SignatureV4({
-        credentials: defaultProvider(),
-        region: region,
-        service: 'execute-api',
-        sha256: Sha256
-    });
 
-    const signedRequest = await signer.sign(request);
-
-    // Make the request
     const response = await fetch(endpoint, {
         method: 'POST',
-        headers: signedRequest.headers,
-        body: signedRequest.body
+        headers: request.headers,
+        body: request.body
     });
 
     if (!response.ok) {
