@@ -8,14 +8,10 @@ Demo video: [https://www.youtube.com/watch?v=gvs8uGo5pUo](https://www.youtube.co
 
 ## About ATPhoto
 
-Tech Stack:
 
-![image](readmeImgs/ATPhotoTechStack.png)
+ATPhoto is a photography site that I built to showcase my photography skills. I'm an avid photographer and a passionate software engineer and I wanted to combine the two. The biggest problem for photography sites is the time it takes to add new content such as photos and blogs.
 
-
-ATPhoto is a photography site that I am building to showcase my photography skills. I'm an avid photographer and a passionate software engineer and I wanted to combine the two.
-
-The biggest problem for photography sites is the time it takes to add new content such as photos and blogs. As I'm currently a university student, I don't have much time to add new content. So, I designed my own image processing pipeline and implemented it myself.
+So, I designed my own image processing pipeline and implemented it myself.
 
 ![image](readmeImgs/ATPhotoImageClassificationPipeline.png)
 
@@ -31,11 +27,6 @@ Becomes this:
 Lastly, the DevOps was a fun adventure where I learned a lot about AWS, and now have robust infrastructure set up with a functioning CI/CD pipeline (after being told by many to just use Vercel). The couple of all nighters I pulled for just my first deployment were worth it.
 
 
+## Tech Stack:
 
-
-
-
-
-
-
-
+![image](readmeImgs/ATPhotoTechStack.png)
