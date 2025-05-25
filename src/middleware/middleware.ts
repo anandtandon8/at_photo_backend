@@ -32,7 +32,7 @@ export const configureMiddleware = (app: express.Application) => {
     // rate limiting
     const limiter = rateLimit({
         windowMs: 15 * 60 * 1000, // 15 minutes
-        max: 50 // limit each IP to 10 requests per windowMs
+        max: 100 // limit each IP to 10 requests per windowMs
     });
     app.use('/api/', limiter);
 
